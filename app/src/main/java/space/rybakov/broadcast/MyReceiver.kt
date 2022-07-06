@@ -9,6 +9,9 @@ class MyReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         when (intent?.action){
+            ACTION_CLICKED -> {
+                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+            }
             Intent.ACTION_BATTERY_LOW -> {
                 Toast.makeText(context, "Battery low", Toast.LENGTH_SHORT).show()
             }
@@ -22,5 +25,9 @@ class MyReceiver: BroadcastReceiver() {
             }
 
         }
+    }
+
+    companion object {
+        const val ACTION_CLICKED = "clicked"
     }
 }
