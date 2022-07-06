@@ -9,14 +9,17 @@ import android.widget.Button
 class MainActivity : AppCompatActivity() {
 
     private val receiver = MyReceiver()
+    private var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.button).setOnClickListener {
-            val intent = Intent(MyReceiver.ACTION_CLICKED)
-            sendBroadcast(intent)
+            val intent = Intent(MyReceiver.ACTION_CLICKED).apply {
+                putExtra(MyReceiver.EXTRA_COUNT, counter++)
+                sendBroadcast(this)
+            }
         }
 
         val intentFilter = IntentFilter().apply {
