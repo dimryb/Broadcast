@@ -26,8 +26,12 @@ class MainActivity : AppCompatActivity() {
             addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
             addAction(Intent.ACTION_BATTERY_LOW)
             addAction(MyReceiver.ACTION_CLICKED)
+            addAction("loaded")
         }
         registerReceiver(receiver, intentFilter)
+        Intent(this, MyService::class.java).apply {
+            startService(this)
+        }
     }
 
     override fun onDestroy() {
